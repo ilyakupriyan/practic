@@ -33,16 +33,12 @@ void printArr(int* arr, int size) {
 	std::cout << std::endl;
 }
 
-int main() {
-	srand(time(NULL)); //засеивание рандома
-	unsigned int number = 0; //переменная для хранения количества копируемых элементов
-	int dest[SIZE_DEST] = { 0 };
-	
+//функция тестирования
+void test(int* dest, int number) {
 	//заполняем массив mas[]
 	for (int i = 0; i < SIZE_MAS; i++)
 		mas[i] = rand() % 100;
 
-	number = def_elements();
 	copyMas(&mas[0], &dest[0], number);
 
 	//результат (для mas только та часть, которая соизмерима с копированным массивом)
@@ -50,7 +46,17 @@ int main() {
 	printArr(&mas[0], SIZE_DEST);
 	std::cout << "Array dest" << std::endl;
 	printArr(&dest[0], SIZE_DEST);
+}
 
+int main() {
+	srand(time(NULL)); //засеивание рандома
+	unsigned int number = 0; //переменная для хранения количества копируемых элементов
+	int dest[SIZE_DEST] = { 0 };
+	
+	number = def_elements();
+	
+	test(&dest[0], number);
+	
 	_getch();
 	return 0;
 }
