@@ -79,6 +79,45 @@ void pushMark(list_phys* marks, list_phys* new_mark) {
     new_mark->direct = direction(new_mark->spd);
 }
 
+//функция теста testTime()
+int RunTestTime() {
+    int speed = 10;
+    int false_time = (2 * speed * 2) / g;
+    if (testTime(false_time) != -1)
+        return -1;
+    return 0;
+}
+
+//функция теста testPosition()
+int testPosition() {
+    double speed = 10, t = 1;
+    doble pos = speed * t - (g * t * t) / 2;
+    if (position(speed, t) != pos)
+        return -1;
+    return 0;
+}
+
+//функция теста speed()
+int testSpeed() {
+    double spd = 10, t = 1;
+    double spd_moment = spd - g * t;
+    if (speed(spd, t) != spd_moment)
+        return -1;
+    return 0;
+}
+
+//фунция теста direction()
+int testDirection() {
+    double speed = 10;
+    if (direction(speed) != "Up")
+        return -1;
+    if (direction(-speed) != "Down")
+        return -1;
+    if (direction(0) != "Not defined")
+        return -1;
+    return 0;
+}
+
 static void runTest(int (*testFunction)(), const string& testName)
 {
     if (testFunction() == 0)
@@ -90,7 +129,7 @@ static void runTest(int (*testFunction)(), const string& testName)
 int main() {
     //здесь надо вставить тесты основных функций
 
-    double v, t_mark = 0, mass; //переменные для хранения нач. скорости, метки времени полета и массы
+    double t_mark = 0, mass; //переменные для хранения нач. скорости, метки времени полета и массы
     list_phys* marks = new list_phys; //список меток времен
     list_phys* temp; //адрем нового элемента списка
 
